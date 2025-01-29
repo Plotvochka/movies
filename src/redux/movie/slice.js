@@ -1,30 +1,56 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { fetchMovie, fetchMovies } from "./operations.js";
 
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
-    list: [],
-    status: "idle",
+    items: [],
+    total: 0,
+    page: 1,
+    perPage: 4,
+    movie: null,
+    isLoading: false,
     error: null,
-    currentPage: 1,
-    totalPages: 0,
   },
   reducers: {
-    fetchMoviesStart: (state) => {
-      state.status = "loading";
+    clearItems(state) {
+      state.items = [];
+      state.total = 0;
+      state.page = 1;
     },
-    fetchMoviesSuccess: (state, action) => {
-      state.status = "success";
-      state.list = action.payload.movie;
-      state.totalPages = action.payload.totalPages;
+
+    setPage(state) {
+      state.page = state.page + 1;
     },
-    fetchMoviesError: (state, action) => {
-      state.status = "error";
-      state.error = action.payload;
-    },
-    setPage: (state, action) => {
-      state.currentPage = action.payload;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+
+      .addCase(fetchMovies.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = [...state.items, ...payload.movie];
+        state.total = payload.total;
+      })
+
+      .addCase(fetchMovie.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.camper = action.payload;
+      })
+
+      .addMatcher(isAnyOf(fetchMovies.pending, fetchMovie.pending), (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addMatcher(
+        isAnyOf(fetchMovies.rejected, fetchMovie.rejected),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 
@@ -33,6 +59,7 @@ export const {
   fetchMoviesSuccess,
   fetchMoviesError,
   setPage,
+  clearItems,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

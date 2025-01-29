@@ -5,14 +5,27 @@ import toast from "react-hot-toast";
 const BASE_URL = (axios.defaults.baseURL =
   "https://movies-back-z2ba.onrender.com/");
 
-export const fetchMovies = async (filters, page) => {
-  const params = new URLSearchParams({
-    ...filters,
-    page,
-  });
-  const response = await axios.get(`${BASE_URL}movie?${params.toString()}`);
-  return response.data.data;
-};
+// export const fetchMovies = async (filters, page) => {
+//   const params = new URLSearchParams({
+//     ...filters,
+//     page,
+//   });
+//   const response = await axios.get(`${BASE_URL}movie?${params.toString()}`);
+//   return response.data.data;
+// };
+export const fetchMovies = createAsyncThunk(
+  "movie/fetchAll",
+  async ({ page, perPage }, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `${BASE_URL}movie?page=${page}&limit=${perPage}`
+      );
+      return res.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const fetchMovie = createAsyncThunk(
   "movie/fetchMovie",

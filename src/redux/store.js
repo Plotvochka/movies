@@ -11,11 +11,13 @@ import {
 
 import movieSlice from "./movie/slice.js";
 import { filterReducer } from "./filterSlice/filterSlice.js";
+import favoritesReducer from "./favoriteSlice/favoriteSlice.js";
 
 export const store = configureStore({
   reducer: {
     movies: movieSlice,
     filters: filterReducer,
+    favorites: favoritesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,16 +1,9 @@
-import {
-  fetchMoviesStart,
-  fetchMoviesSuccess,
-  fetchMoviesError,
-} from "../movie/slice.js";
-import { fetchMovies } from "../movie/operations.js";
+export const selectAllMovies = (state) => state.movies.items;
 
-export const fetchMoviess = (filters, page) => async (dispatch) => {
-  dispatch(fetchMoviesStart());
-  try {
-    const response = await fetchMovies(filters, page);
-    dispatch(fetchMoviesSuccess(response));
-  } catch (error) {
-    dispatch(fetchMoviesError(error.message));
-  }
-};
+export const selectPage = (state) => state.movies.page;
+
+export const selectPerPage = (state) => state.movies.perPage;
+
+export const selectTotal = (state) => state.movies.total;
+
+export const selectLoading = (state) => state.movies.isLoading;

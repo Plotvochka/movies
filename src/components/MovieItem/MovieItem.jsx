@@ -2,11 +2,12 @@ import css from "./MovieItem.module.css";
 import PropTypes from "prop-types";
 import { CiStar } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import FavoriteIcon from "../FavoriteIcon/FavoriteIcon.jsx";
 
 const MovieItem = (movie) => {
   return (
-    <Link to={`/movie/${movie.list._id}`}>
-      <div className={css.container}>
+    <div className={css.container}>
+      <Link to={`/movie/${movie.list._id}`}>
         <div className={css.infoWrap}>
           <img src={movie.list.image} alt="Poster film" className={css.image} />
           <p className={css.title}>{movie.list.title}</p>
@@ -18,8 +19,9 @@ const MovieItem = (movie) => {
             <p className={css.release}>{movie.list.releaseDate} year</p>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+      <FavoriteIcon movie={movie} />
+    </div>
   );
 };
 
