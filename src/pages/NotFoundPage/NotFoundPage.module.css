@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  padding: 48px 64px;
+  justify-content: space-between;
+  padding-top: 120px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+.text {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 60px;
+}
+.btn {
+  border-radius: 200px;
+  padding: 16px 60px;
+  background-color: rgb(185, 61, 61);
+  letter-spacing: -0.01em;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(140, 21, 21);
+}
