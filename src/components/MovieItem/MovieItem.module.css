@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  gap: 24px;
+  border: 1px solid #dadde1;
+  border-radius: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+  width: 300px;
+}
+
+.image {
+  width: 250px;
+  height: 350px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.infoWrap {
+  text-align: center;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  margin-bottom: 10px;
+}
+
+.ratingWrap {
+  display: flex;
+  gap: 8px;
+}
+
+.rating {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.33;
+}
+
+.release {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.33;
+}

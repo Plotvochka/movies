@@ -9,11 +9,13 @@ import {
   REGISTER,
 } from "redux-persist";
 
-import movieReducer from "./movie/slice";
+import movieSlice from "./movie/slice.js";
+import { filterReducer } from "./filterSlice/filterSlice.js";
 
 export const store = configureStore({
   reducer: {
-    movie: movieReducer,
+    movies: movieSlice,
+    filters: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

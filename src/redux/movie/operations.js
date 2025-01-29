@@ -2,25 +2,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "https://movies-theta-three-59.vercel.app/";
+const BASE_URL = (axios.defaults.baseURL =
+  "https://movies-back-z2ba.onrender.com/");
 
-export const fetchMovies = createAsyncThunk(
-  "movie/fetchAllMovie",
-  async ({ page, perPage }, thunkAPI) => {
-    try {
-      const res = await axios.get(`movie/?page=${page}&limit=${perPage}`);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+export const fetchMovies = async (filters, page) => {
+  const params = new URLSearchParams({
+    ...filters,
+    page,
+  });
+  const response = await axios.get(`${BASE_URL}movie?${params.toString()}`);
+  return response.data.data;
+};
 
 export const fetchMovie = createAsyncThunk(
   "movie/fetchMovie",
   async (id, thunkAPI) => {
     try {
-      const res = await axios.get(`movie/${id}`);
+      const res = await axios.get(`${BASE_URL}movie/${id}`);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -33,7 +31,7 @@ export const addMovie = createAsyncThunk(
   async (newMovie, thunkAPI) => {
     const toastId = toast.loading("Add...");
     try {
-      const { data } = await axios.post("/contacts", newMovie);
+      const { data } = await axios.post(`${BASE_URL}movie`, newMovie);
       toast.success("Successfully added!", { id: toastId });
       return data;
     } catch (error) {
@@ -49,7 +47,7 @@ export const editMovie = createAsyncThunk(
     const toastId = toast.loading("Edit...");
     try {
       const { data } = await axios.patch(
-        `/movie/${newMovie.id}`,
+        `${BASE_URL}movie/${newMovie.id}`,
         newMovie.date
       );
       toast.success("Successfully edit!", { id: toastId });
@@ -66,7 +64,7 @@ export const deleteMovie = createAsyncThunk(
   async (id, thunkAPI) => {
     const toastId = toast.loading("Delete...");
     try {
-      const { data } = await axios.delete(`/movie/${id}`);
+      const { data } = await axios.delete(`${BASE_URL}movie/${id}`);
       toast.success("Successfully delete!", { id: toastId });
       return data;
     } catch (error) {
