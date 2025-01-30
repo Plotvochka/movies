@@ -1,4 +1,4 @@
-export const selectAllMovies = (state) => state.movies.items;
+export const selectAllMovies = (state) => state.movies.items || [];
 
 export const selectMovie = (state) => state.movies.items.data;
 

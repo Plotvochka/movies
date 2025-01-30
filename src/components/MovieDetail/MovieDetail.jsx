@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { CiStar } from "react-icons/ci";
 
 const MovieDetail = ({ movie }) => {
-  console.log(movie);
   return (
     <div className={css.detailWrap}>
       <img src={movie.image} alt={movie.title} className={css.detailImg} />

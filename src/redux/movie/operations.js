@@ -47,18 +47,15 @@ export const addMovie = createAsyncThunk(
 );
 
 export const editMovie = createAsyncThunk(
-  "movie/editMovie",
-  async (newMovie, thunkAPI) => {
-    const toastId = toast.loading("Edit...");
+  "movies/editMovie",
+  async ({ _id, updatedFields }, thunkAPI) => {
     try {
       const { data } = await axios.patch(
-        `${BASE_URL}movie/${newMovie.id}`,
-        newMovie.date
+        `${BASE_URL}movie/${_id}`,
+        updatedFields
       );
-      toast.success("Successfully edit!", { id: toastId });
-      return data;
+      return { _id, updatedFields };
     } catch (error) {
-      toast.error("Sorry, we have a problem...", { id: toastId });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -70,11 +67,10 @@ export const deleteMovie = createAsyncThunk(
     const toastId = toast.loading("Delete...");
     try {
       const { data } = await axios.delete(`${BASE_URL}movie/${_id}`);
-      toast.success("Successfully delete!", { _id: toastId });
-      console.log(data);
+      toast.success("Successfully delete!", { id: toastId });
       return data;
     } catch (error) {
-      toast.error("Sorry, we have a problem...", { _id: toastId });
+      toast.error("Sorry, we have a problem...", { id: toastId });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

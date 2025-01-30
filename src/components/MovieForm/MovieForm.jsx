@@ -3,11 +3,11 @@ import { addMovie } from "../../redux/movie/operations.js";
 import PropTypes from "prop-types";
 import css from "./MovieForm.module.css";
 
-const MovieForm = ({ isOpen }) => {
+const MovieForm = ({ isOpen, isClose }) => {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.movies);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const movieData = {
       title: e.target.title.value,
@@ -19,8 +19,12 @@ const MovieForm = ({ isOpen }) => {
       releaseDate: e.target.releaseDate.value,
       image: e.target.image.value,
     };
-    dispatch(addMovie(movieData));
+    const result = await dispatch(addMovie(movieData));
+    if (addMovie.fulfilled.match(result)) {
+      isClose();
+    }
   };
+
   if (!isOpen) return null;
   return (
     <form onSubmit={handleSubmit} className={css.modalOverlay}>
@@ -95,4 +99,5 @@ export default MovieForm;
 
 MovieForm.propTypes = {
   isOpen: PropTypes.bool,
+  isClose: PropTypes.func,
 };

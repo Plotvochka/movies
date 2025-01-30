@@ -14,8 +14,8 @@ import {
   selectFilters,
 } from "../../redux/movie/selectors.js";
 
-const MoviesList = () => {
-  const items = useSelector(selectAllMovies);
+const MoviePage = () => {
+  const items = useSelector(selectAllMovies) || [];
   const page = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
   const searchQuery = useSelector(selectFilters);
@@ -38,9 +38,12 @@ const MoviesList = () => {
     dispatch(setPage());
   };
 
-  const filteredMovies = items.filter((movie) =>
-    movie.title.toLowerCase().includes(searchQuery)
-  );
+  const filteredMovies = Array.isArray(items)
+    ? items.filter((movie) =>
+        movie.title?.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
+
   if (loading) return <p>Loading...</p>;
 
   return (
@@ -55,4 +58,4 @@ const MoviesList = () => {
   );
 };
 
-export default MoviesList;
+export default MoviePage;
