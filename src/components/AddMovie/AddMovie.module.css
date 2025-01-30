@@ -1,0 +1,10 @@
+.addBtn {
+  padding: 20px 40px;
+  border-radius: 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border: none;
+  color: white;
+  background-color: brown;
+}

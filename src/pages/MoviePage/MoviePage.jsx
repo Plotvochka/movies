@@ -6,6 +6,7 @@ import Movie from "../../components/Movie/Movie.jsx";
 import css from "./MoviePage.module.css";
 import LoadMore from "../../components/LoadMore/LoadMore.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
+import AddMovie from "../../components/AddMovie/AddMovie.jsx";
 import {
   selectAllMovies,
   selectPage,
@@ -42,6 +43,7 @@ const MoviesList = () => {
   return (
     <main className={css.main}>
       <SearchBar />
+      <AddMovie items={items} />
       <div className={css.listWrap}>
         {items.length !== 0 && <Movie items={filteredMovies} />}
         <LoadMore onClick={handleClick} />

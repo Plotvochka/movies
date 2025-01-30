@@ -32,16 +32,16 @@ export const fetchMovie = createAsyncThunk(
 );
 
 export const addMovie = createAsyncThunk(
-  "movie/addMovie",
-  async (newMovie, thunkAPI) => {
-    const toastId = toast.loading("Add...");
+  "movies/addMovie",
+  async (movieData, thunkAPI) => {
+    const toastId = toast.loading("Adding movie...");
     try {
-      const { data } = await axios.post(`${BASE_URL}movie`, newMovie);
-      toast.success("Successfully added!", { id: toastId });
+      const { data } = await axios.post(`${BASE_URL}movie`, movieData);
+      toast.success("Movie added successfully!", { id: toastId });
       return data;
     } catch (error) {
-      toast.error("Sorry, we have a problem...", { id: toastId });
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error("Failed to add movie.", { id: toastId });
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );

@@ -10,7 +10,7 @@ const MovieItem = (movie) => {
   const dispatch = useDispatch();
 
   const handleDelete = async () => {
-    const result = await dispatch(deleteMovie(movie.list._id));
+    await dispatch(deleteMovie(movie.list._id));
   };
 
   return (
@@ -29,11 +29,7 @@ const MovieItem = (movie) => {
         </div>
       </Link>
       <FavoriteIcon movie={movie} />
-      <button
-        type="button"
-        className={css.deleteModal__delete}
-        onClick={handleDelete}
-      >
+      <button type="button" className={css.deleteBtn} onClick={handleDelete}>
         Delete
       </button>
     </div>

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchMovie, fetchMovies } from "./operations.js";
+import { addMovie, fetchMovie, fetchMovies } from "./operations.js";
 
 const moviesSlice = createSlice({
   name: "movies",
@@ -37,6 +37,18 @@ const moviesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items = action.payload;
+      })
+      .addCase(addMovie.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addMovie.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items.push(action.payload);
+      })
+      .addCase(addMovie.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       })
 
       .addMatcher(isAnyOf(fetchMovies.pending, fetchMovie.pending), (state) => {
