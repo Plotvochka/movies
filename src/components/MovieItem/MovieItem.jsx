@@ -3,8 +3,16 @@ import PropTypes from "prop-types";
 import { CiStar } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import FavoriteIcon from "../FavoriteIcon/FavoriteIcon.jsx";
+import { useDispatch } from "react-redux";
+import { deleteMovie } from "../../redux/movie/operations.js";
 
 const MovieItem = (movie) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = async () => {
+    const result = await dispatch(deleteMovie(movie.list._id));
+  };
+
   return (
     <div className={css.container}>
       <Link to={`/movie/${movie.list._id}`}>
@@ -21,6 +29,13 @@ const MovieItem = (movie) => {
         </div>
       </Link>
       <FavoriteIcon movie={movie} />
+      <button
+        type="button"
+        className={css.deleteModal__delete}
+        onClick={handleDelete}
+      >
+        Delete
+      </button>
     </div>
   );
 };

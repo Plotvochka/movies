@@ -1,30 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  title: "",
-  genre: "",
-  releaseDate: "",
-  director: "",
-  actors: "",
-  isFavourite: "",
-};
-
-const filtersSlice = createSlice({
+const filterSlice = createSlice({
   name: "filters",
-  initialState,
+  initialState: "",
   reducers: {
-    setFilter: (state, action) => {
-      const { key, value } = action.payload;
-      state[key] = value;
-    },
-    resetFilters: (state) => {
-      state.title = "";
-      state.genre = "";
-      state.year = "";
-      state.director = "";
-    },
+    setFilter: (state, action) => action.payload,
   },
 });
 
-export const { setFilter, resetFilters } = filtersSlice.actions;
-export const filterReducer = filtersSlice.reducer;
+export const { setFilter } = filterSlice.actions;
+export default filterSlice.reducer;

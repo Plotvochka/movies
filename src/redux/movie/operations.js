@@ -5,14 +5,6 @@ import toast from "react-hot-toast";
 const BASE_URL = (axios.defaults.baseURL =
   "https://movies-back-z2ba.onrender.com/");
 
-// export const fetchMovies = async (filters, page) => {
-//   const params = new URLSearchParams({
-//     ...filters,
-//     page,
-//   });
-//   const response = await axios.get(`${BASE_URL}movie?${params.toString()}`);
-//   return response.data.data;
-// };
 export const fetchMovies = createAsyncThunk(
   "movie/fetchAll",
   async ({ page, perPage }, thunkAPI) => {
@@ -74,14 +66,15 @@ export const editMovie = createAsyncThunk(
 
 export const deleteMovie = createAsyncThunk(
   "movie/deleteMovie",
-  async (id, thunkAPI) => {
+  async (_id, thunkAPI) => {
     const toastId = toast.loading("Delete...");
     try {
-      const { data } = await axios.delete(`${BASE_URL}movie/${id}`);
-      toast.success("Successfully delete!", { id: toastId });
+      const { data } = await axios.delete(`${BASE_URL}movie/${_id}`);
+      toast.success("Successfully delete!", { _id: toastId });
+      console.log(data);
       return data;
     } catch (error) {
-      toast.error("Sorry, we have a problem...", { id: toastId });
+      toast.error("Sorry, we have a problem...", { _id: toastId });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

@@ -1,10 +1,11 @@
 .main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
+  text-align: center;
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+.listWrap {
+  padding-top: 20px;
 }
 
 .loading {

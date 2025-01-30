@@ -5,18 +5,21 @@ import { setPage, clearItems } from "../../redux/movie/slice.js";
 import Movie from "../../components/Movie/Movie.jsx";
 import css from "./MoviePage.module.css";
 import LoadMore from "../../components/LoadMore/LoadMore.jsx";
+import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import {
   selectAllMovies,
   selectPage,
   selectPerPage,
+  selectFilters,
 } from "../../redux/movie/selectors.js";
 
 const MoviesList = () => {
   const items = useSelector(selectAllMovies);
   const page = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
+  const searchQuery = useSelector(selectFilters);
   const [isFirstRender, setIsFirstRender] = useState(true);
-  // const filters = useSelector((state) => state.filters);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,10 +35,17 @@ const MoviesList = () => {
     dispatch(setPage());
   };
 
+  const filteredMovies = items.filter((movie) =>
+    movie.title.toLowerCase().includes(searchQuery)
+  );
+
   return (
     <main className={css.main}>
-      {items.length !== 0 && <Movie items={items} />}
-      <LoadMore onClick={handleClick} />
+      <SearchBar />
+      <div className={css.listWrap}>
+        {items.length !== 0 && <Movie items={filteredMovies} />}
+        <LoadMore onClick={handleClick} />
+      </div>
     </main>
   );
 };

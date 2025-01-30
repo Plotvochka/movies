@@ -7,3 +7,7 @@ export const selectPerPage = (state) => state.movies.perPage;
 export const selectTotal = (state) => state.movies.total;
 
 export const selectLoading = (state) => state.movies.isLoading;
+
+export const selectFavorite = (state) => state.favorites;
+
+export const selectFilters = (state) => state.filters;

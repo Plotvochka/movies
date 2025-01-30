@@ -36,14 +36,13 @@ const moviesSlice = createSlice({
       .addCase(fetchMovie.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.camper = action.payload;
+        state.items = action.payload;
       })
 
       .addMatcher(isAnyOf(fetchMovies.pending, fetchMovie.pending), (state) => {
         state.isLoading = true;
         state.error = null;
       })
-
       .addMatcher(
         isAnyOf(fetchMovies.rejected, fetchMovie.rejected),
         (state, action) => {
@@ -54,12 +53,6 @@ const moviesSlice = createSlice({
   },
 });
 
-export const {
-  fetchMoviesStart,
-  fetchMoviesSuccess,
-  fetchMoviesError,
-  setPage,
-  clearItems,
-} = moviesSlice.actions;
+export const { setPage, clearItems } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

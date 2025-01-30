@@ -10,7 +10,7 @@ import {
 } from "redux-persist";
 
 import movieSlice from "./movie/slice.js";
-import { filterReducer } from "./filterSlice/filterSlice.js";
+import filterReducer from "./filterSlice/filterSlice.js";
 import favoritesReducer from "./favoriteSlice/favoriteSlice.js";
 
 export const store = configureStore({
