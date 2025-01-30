@@ -11,25 +11,57 @@
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 300px;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .inputForm {
-  padding: 8px;
-  font-size: 18px;
+  padding: 4px;
+  font-size: 12px;
   border-radius: 10px;
 }
 
 .btnForm {
-  padding: 20px 30px;
+  padding: 10px 15px;
   border-radius: 20px;
   background-color: blueviolet;
   color: white;
-  font-size: 18px;
+  font-size: 12px;
   border: none;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .editContent {
+    padding: 15px;
+    width: 400px;
+    height: 400px;
+  }
+  .inputForm {
+    padding: 6px;
+    font-size: 14px;
+  }
+  .btnForm {
+    padding: 15px 20px;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1158px) {
+  .editContent {
+    padding: 20px;
+    width: 500px;
+    height: 500px;
+  }
+  .inputForm {
+    padding: 8px;
+    font-size: 18px;
+  }
+  .btnForm {
+    padding: 20px 30px;
+    font-size: 18px;
+  }
 }

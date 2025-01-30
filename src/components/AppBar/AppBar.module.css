@@ -1,8 +1,21 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 550px;
+  gap: 50px;
   border-bottom: 1px solid #f2f4f7;
-  padding: 24px 64px;
+  padding: 14px 24px;
   background: #f7f7f7;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    gap: 250px;
+    padding: 20px 44px;
+  }
+}
+@media screen and (min-width: 1158px) {
+  .header {
+    gap: 550px;
+    padding: 24px 64px;
+  }
 }

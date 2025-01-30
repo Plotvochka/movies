@@ -1,20 +1,37 @@
 .detailWrap {
   text-align: center;
   padding-top: 30px;
-  height: 100vh;
 }
 
 .detailImg {
   border-radius: 20px;
-  width: 400px;
+  width: 200px;
 }
 
 .detailInfo {
-  font-size: 25px;
+  font-size: 15px;
   margin-bottom: 10px;
 }
 .ratingWrap {
   display: flex;
   justify-content: center;
+  align-content: center;
   gap: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .detailImg {
+    width: 290px;
+  }
+  .detailInfo {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1158px) {
+  .detailImg {
+    width: 380px;
+  }
+  .detailInfo {
+    font-size: 25px;
+  }
 }

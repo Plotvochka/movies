@@ -50,10 +50,7 @@ export const editMovie = createAsyncThunk(
   "movies/editMovie",
   async ({ _id, updatedFields }, thunkAPI) => {
     try {
-      const { data } = await axios.patch(
-        `${BASE_URL}movie/${_id}`,
-        updatedFields
-      );
+      await axios.patch(`${BASE_URL}movie/${_id}`, updatedFields);
       return { _id, updatedFields };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
