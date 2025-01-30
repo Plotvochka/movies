@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../../redux/movie/operations.js";
 import { setPage, clearItems } from "../../redux/movie/slice.js";
-import Movie from "../../components/Movie/Movie.jsx";
+import Movies from "../../components/Movies/Movies.jsx";
 import css from "./MoviePage.module.css";
 import LoadMore from "../../components/LoadMore/LoadMore.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
@@ -20,6 +20,7 @@ const MoviesList = () => {
   const perPage = useSelector(selectPerPage);
   const searchQuery = useSelector(selectFilters);
   const [isFirstRender, setIsFirstRender] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -29,6 +30,7 @@ const MoviesList = () => {
       dispatch(clearItems([]));
       return;
     }
+    setLoading(false);
     dispatch(fetchMovies({ page, perPage }));
   }, [dispatch, isFirstRender, page, perPage]);
 
@@ -39,13 +41,14 @@ const MoviesList = () => {
   const filteredMovies = items.filter((movie) =>
     movie.title.toLowerCase().includes(searchQuery)
   );
+  if (loading) return <p>Loading...</p>;
 
   return (
     <main className={css.main}>
       <SearchBar />
       <AddMovie items={items} />
       <div className={css.listWrap}>
-        {items.length !== 0 && <Movie items={filteredMovies} />}
+        {items.length !== 0 && <Movies items={filteredMovies} />}
         <LoadMore onClick={handleClick} />
       </div>
     </main>

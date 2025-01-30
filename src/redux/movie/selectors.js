@@ -1,5 +1,7 @@
 export const selectAllMovies = (state) => state.movies.items;
 
+export const selectMovie = (state) => state.movies.items.data;
+
 export const selectPage = (state) => state.movies.page;
 
 export const selectPerPage = (state) => state.movies.perPage;

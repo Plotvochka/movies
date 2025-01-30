@@ -1,0 +1,21 @@
+.detailWrap {
+  text-align: center;
+  padding-top: 30px;
+  background-color: bisque;
+  height: 100vh;
+}
+
+.detailImg {
+  border-radius: 20px;
+  width: 400px;
+}
+
+.detailInfo {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.ratingWrap {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
