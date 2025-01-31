@@ -13,6 +13,7 @@ import {
   selectPerPage,
   selectFilters,
 } from "../../redux/movie/selectors.js";
+import { Toaster } from "react-hot-toast";
 
 const MoviePage = () => {
   const items = useSelector(selectAllMovies) || [];
@@ -48,6 +49,9 @@ const MoviePage = () => {
 
   return (
     <main className={css.main}>
+      <div>
+        <Toaster />
+      </div>
       <SearchBar />
       <AddMovie items={items} />
       <div className={css.listWrap}>

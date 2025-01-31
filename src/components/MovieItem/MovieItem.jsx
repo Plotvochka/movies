@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import FavoriteIcon from "../FavoriteIcon/FavoriteIcon.jsx";
 import { useDispatch } from "react-redux";
 import { deleteMovie } from "../../redux/movie/operations.js";
+import { useNavigate } from "react-router-dom";
 
 const MovieItem = (movie) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDelete = async () => {
     await dispatch(deleteMovie(movie.list._id));
+    navigate(0);
   };
 
   return (

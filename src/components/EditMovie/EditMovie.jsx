@@ -34,7 +34,6 @@ const EditMovie = ({ movie }) => {
           type="text"
           name="title"
           placeholder="Title"
-          defaultValue={movie.title}
           onChange={handleChange}
           className={css.inputForm}
         />
@@ -42,7 +41,6 @@ const EditMovie = ({ movie }) => {
           type="text"
           name="description"
           placeholder="Description"
-          defaultValue={movie.description}
           onChange={handleChange}
           className={css.inputForm}
         />
@@ -50,7 +48,6 @@ const EditMovie = ({ movie }) => {
           type="text"
           name="actors"
           placeholder="Actors"
-          defaultValue={movie.actors}
           onChange={handleChange}
           className={css.inputForm}
         />
@@ -58,7 +55,6 @@ const EditMovie = ({ movie }) => {
           type="text"
           name="director"
           placeholder="Director"
-          defaultValue={movie.director}
           onChange={handleChange}
           className={css.inputForm}
         />
@@ -66,7 +62,6 @@ const EditMovie = ({ movie }) => {
           type="text"
           name="genre"
           placeholder="Genre"
-          defaultValue={movie.genre}
           onChange={handleChange}
           className={css.inputForm}
         />
@@ -74,7 +69,6 @@ const EditMovie = ({ movie }) => {
           type="number"
           name="rating"
           placeholder="Rating"
-          defaultValue={movie.rating}
           onChange={handleChange}
           className={css.inputForm}
         />
@@ -82,7 +76,6 @@ const EditMovie = ({ movie }) => {
           type="number"
           name="releaseDate"
           placeholder="Release date"
-          defaultValue={movie.releaseDate}
           onChange={handleChange}
           className={css.inputForm}
         />
@@ -90,7 +83,6 @@ const EditMovie = ({ movie }) => {
           type="text"
           name="image"
           placeholder="Image"
-          defaultValue={movie.image}
           onChange={handleChange}
           className={css.inputForm}
         />

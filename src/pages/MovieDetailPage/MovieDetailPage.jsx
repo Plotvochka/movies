@@ -6,6 +6,7 @@ import { fetchMovie } from "../../redux/movie/operations.js";
 import { selectMovie } from "../../redux/movie/selectors.js";
 import MovieDetail from "../../components/MovieDetail/MovieDetail.jsx";
 import EditMovie from "../../components/EditMovie/EditMovie.jsx";
+import { Toaster } from "react-hot-toast";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
@@ -23,10 +24,15 @@ const MovieDetailPage = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div className={css.detailContainer}>
-      <MovieDetail movie={movie} />
-      <EditMovie movie={movie} />
-    </div>
+    <>
+      <div>
+        <Toaster />
+      </div>
+      <div className={css.detailContainer}>
+        <MovieDetail movie={movie} />
+        <EditMovie movie={movie} />
+      </div>
+    </>
   );
 };
 

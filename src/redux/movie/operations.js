@@ -49,10 +49,15 @@ export const addMovie = createAsyncThunk(
 export const editMovie = createAsyncThunk(
   "movies/editMovie",
   async ({ _id, updatedFields }, thunkAPI) => {
+    const toastId = toast.loading("Edit movie...");
     try {
       await axios.patch(`${BASE_URL}movie/${_id}`, updatedFields);
+      toast.success("Movie edit successfully! Please refresh the page", {
+        id: toastId,
+      });
       return { _id, updatedFields };
     } catch (error) {
+      toast.success("Sorry, we have a problem...", { id: toastId });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
